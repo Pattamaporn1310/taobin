@@ -23,28 +23,32 @@ class _product_coffeeState extends State<product_coffee> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('COFFEE')),
-      backgroundColor: Color.fromARGB(255, 248, 244, 219),
-      body: ListView.builder(
-          itemCount: product_cof.length,
-          itemBuilder: (context, index) {
-            return Center(
-              child: Column(
+        appBar: AppBar(title: Text('COFFEE')),
+        backgroundColor: Color.fromARGB(255, 248, 244, 219),
+        body: ListView.builder(
+            itemCount: product_cof.length,
+            itemBuilder: (context, index) {
+              return Column(
                 children: [
-                  Image(
-                    image: NetworkImage(product_cof[index].imageurl),
-                  ),
-                  Center(
-                    child: ListTile(
-                      title: Text(product_cof[index].name),
-                      subtitle: Text("\$ ${product_cof[index].price}"),
-                      onTap: () {},
-                    ),
-                  ),
+                  Image.network(product_cof[index].imageurl),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(product_cof[index].name),
+                      Text('\$ ${product_cof[index].price}')
+                    ],
+                  )
                 ],
-              ),
-            );
-          }),
-    );
+              );
+
+              // ListTile(
+              //   title: Text(product_cof[index].name),
+              //   subtitle: Text("\$ ${product_cof[index].price}"),
+              //   leading: Image(
+              //     image: NetworkImage(product_cof[index].imageurl),
+              //   ),
+              //   onTap: () {},
+              // );
+            }));
   }
 }
