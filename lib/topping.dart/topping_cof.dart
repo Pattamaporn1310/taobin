@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -19,12 +21,65 @@ class topping_cof extends StatefulWidget {
 
 class _topping_cofState extends State<topping_cof> {
   bool isLoading = false;
+  int sum = 0;
+  int sum2 = 0;
+  int sum3 = 0;
+  int honey = 20;
+  int sugar = 15;
+  int milk = 10;
+  // void initState() {
+  //   count();
+  //   super.initState();
+  // }
+
+  // void count() {
+  //   for (var i = 0; i < widget.p_cof.price; i++) honey += widget.p_cof.price[i];
+  // }
+
+//honey
+  void cal1() {
+    setState(() {
+      sum--;
+    });
+  }
+
+  void _cal() {
+    setState(() {
+      sum++;
+    });
+  }
+
+//sugar
+  void cal2() {
+    setState(() {
+      sum2--;
+    });
+  }
+
+  void __cal() {
+    setState(() {
+      sum2++;
+    });
+  }
+
+  void cal3() {
+    setState(() {
+      sum3--;
+    });
+  }
+
+  void ___cal() {
+    setState(() {
+      sum3++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => isLoading
       ? const LoadingPage()
       : Scaffold(
           appBar: AppBar(
-            title: Text(widget.p_cof.name),
+            title: Text('TOPPING'),
             //backgroundColor: Color.fromARGB(255, 184, 218, 246),
             actions: [
               IconButton(
@@ -38,19 +93,16 @@ class _topping_cofState extends State<topping_cof> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(18),
-                child: Text(
-                  'TOPPING',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
               Image.network(widget.p_cof.imageurl),
+              Text(
+                widget.p_cof.name.toString(),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'price: ${widget.p_cof.price}',
+                    'price: ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -58,7 +110,7 @@ class _topping_cofState extends State<topping_cof> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -67,26 +119,16 @@ class _topping_cofState extends State<topping_cof> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      cal1();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(), labelText: 'Honey'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -106,19 +148,41 @@ class _topping_cofState extends State<topping_cof> {
                           ),
                           child: Center(
                               child: Text(
-                            '20฿',
+                            ' ${sum} ',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: IconButton(
                           onPressed: (() {
-                            setState(() {});
+                            setState(() {
+                              _cal();
+                            });
                           }),
                           icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            ' Honey  ${honey} ฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),
@@ -127,7 +191,7 @@ class _topping_cofState extends State<topping_cof> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -136,26 +200,16 @@ class _topping_cofState extends State<topping_cof> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      cal2();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(), labelText: 'Sugar'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -175,16 +229,41 @@ class _topping_cofState extends State<topping_cof> {
                           ),
                           child: Center(
                               child: Text(
-                            '15฿',
+                            '  ${sum2} ',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              __cal();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Sugar  ${sugar} ฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),
@@ -193,7 +272,7 @@ class _topping_cofState extends State<topping_cof> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -202,26 +281,16 @@ class _topping_cofState extends State<topping_cof> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      cal3();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(), labelText: 'Milk'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -241,16 +310,41 @@ class _topping_cofState extends State<topping_cof> {
                           ),
                           child: Center(
                               child: Text(
-                            '10฿',
+                            '  ${sum3} ',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              ___cal();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            ' Milk  ${milk} ฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),

@@ -45,22 +45,22 @@ class _product_coffeeState extends State<product_coffee> {
                   child: Padding(
                     padding: const EdgeInsets.all(20),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Image.network(product_cof[index].imageurl),
                         Text(
                           product_cof[index].name,
                           style: TextStyle(fontSize: 20),
                         ),
-                        Image.network(product_cof[index].imageurl),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'price ${product_cof[index].price}',
                               style: TextStyle(fontSize: 17),
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

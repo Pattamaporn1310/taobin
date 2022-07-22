@@ -13,15 +13,11 @@ class option_cof extends StatefulWidget {
   @override
   State<option_cof> createState() => _option_cofState();
 }
-// enum op {}
 
 class _option_cofState extends State<option_cof> {
   bool isLoading = false;
-  bool isChecked = false;
-  bool isChecked1 = false;
-  bool isChecked2 = false;
-  bool isChecked3 = false;
-  bool isChecked4 = false;
+  int sum = 0;
+
   @override
   Widget build(BuildContext context) => isLoading
       ? const LoadingPage()
@@ -40,19 +36,16 @@ class _option_cofState extends State<option_cof> {
           body: Center(
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Padding(
-              padding: const EdgeInsets.all(18),
-              child: Text(
-                'OPTION',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
             Image.network(widget.t_cof.imageurl),
+            Text(
+              widget.t_cof.name,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'price: ${widget.t_cof.price}',
+                  'price:',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],
@@ -72,7 +65,7 @@ class _option_cofState extends State<option_cof> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: [
@@ -86,18 +79,6 @@ class _option_cofState extends State<option_cof> {
                         ],
                       ),
                     ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Container(
-                      width: 152,
-                      height: 50,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(), labelText: 'Shot '),
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -117,16 +98,36 @@ class _option_cofState extends State<option_cof> {
                         ),
                         child: Center(
                             child: Text(
-                          '5฿',
+                          ' ${sum} ',
                           style: TextStyle(fontSize: 20),
                         ))),
-
-                    // style: ElevatedButton.styleFrom(primary: Colors.green),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child:
                         IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        height: 50,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 1,
+                                spreadRadius: 0,
+                                offset: Offset(0, 0)),
+                          ],
+                          color: Colors.white,
+                        ),
+                        child: Center(
+                            child: Text(
+                          'Shot 15฿',
+                          style: TextStyle(fontSize: 20),
+                        ))),
                   ),
                 ],
               ),
