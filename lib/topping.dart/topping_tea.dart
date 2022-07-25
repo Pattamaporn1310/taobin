@@ -18,6 +18,141 @@ class topping_tea extends StatefulWidget {
 
 class _topping_teaState extends State<topping_tea> {
   bool isLoading = false;
+  //add
+  double sum = 0;
+  double sum1 = 0;
+  double sum2 = 0;
+  double sum3 = 0;
+  double sum4 = 0;
+  //topping
+  double boba = 5;
+  double konjac = 15;
+  double crystal = 10;
+  double jelly = 5;
+  double grains = 20;
+  double allSum = 0;
+
+  void initState() {
+    allSum = widget.p_tea.price;
+    super.initState();
+  }
+
+  void boba_cal() {
+    setState(() {
+      sum--;
+      if (sum <= 0) {
+        allSum = widget.p_tea.price;
+        sum = 0;
+      }
+      if (sum == 0) {
+      } else {
+        allSum -= boba;
+      }
+    });
+  }
+
+  void boba_cal1() {
+    double countPriceBoba = 0;
+    setState(() {
+      sum++;
+      countPriceBoba = (boba * sum) / sum;
+      allSum = countPriceBoba + allSum;
+    });
+  }
+
+  void konjac_cal() {
+    setState(() {
+      sum1--;
+      if (sum1 <= 0) {
+        allSum = widget.p_tea.price;
+        sum1 = 0;
+      }
+      if (sum1 == 0) {
+      } else {
+        allSum -= konjac;
+      }
+    });
+  }
+
+  void konjac_cal2() {
+    double countPriceKonjac = 0;
+    setState(() {
+      sum1++;
+      countPriceKonjac = (konjac * sum1) / sum1;
+      allSum = countPriceKonjac + allSum;
+    });
+  }
+
+  void crystal_cal() {
+    setState(() {
+      sum2--;
+
+      if (sum2 <= 0) {
+        allSum = widget.p_tea.price;
+        sum2 = 0;
+      }
+      if (sum2 == 0) {
+      } else {
+        allSum -= crystal;
+      }
+    });
+  }
+
+  void crystal_cal3() {
+    double countPriceCrystal = 0;
+    setState(() {
+      sum2++;
+      countPriceCrystal = (crystal * sum2) / sum2;
+      allSum = countPriceCrystal + allSum;
+    });
+  }
+
+  void jelly_cal() {
+    setState(() {
+      sum3--;
+      if (sum3 <= 0) {
+        allSum = widget.p_tea.price;
+        sum3 = 0;
+      }
+      if (sum3 == 0) {
+      } else {
+        allSum -= jelly;
+      }
+    });
+  }
+
+  void jelly_cal4() {
+    double countPriceJelly = 0;
+    setState(() {
+      sum3++;
+      countPriceJelly = (jelly * sum3) / sum3;
+      allSum = countPriceJelly + allSum;
+    });
+  }
+
+  void grains_cal() {
+    setState(() {
+      sum4--;
+      if (sum4 <= 0) {
+        allSum = widget.p_tea.price;
+        sum4 = 0;
+      }
+      if (sum4 == 0) {
+      } else {
+        allSum -= grains;
+      }
+    });
+  }
+
+  void grains_cal5() {
+    double countPriceGrains = 0;
+    setState(() {
+      sum4++;
+      countPriceGrains = (grains * sum4) / sum4;
+      allSum = countPriceGrains + allSum;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => isLoading
       ? const LoadingPage()
@@ -36,28 +171,25 @@ class _topping_teaState extends State<topping_tea> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Text(
-                  'TOPPING',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
               Image.network(widget.p_tea.imageurl),
+              Text(
+                widget.p_tea.name,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'price: \$',
+                    'price: \$ ${allSum}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
-              //Pearl
+              //ไข่มุก
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -66,26 +198,16 @@ class _topping_teaState extends State<topping_tea> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      boba_cal();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(), labelText: 'Pearl'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -105,25 +227,50 @@ class _topping_teaState extends State<topping_tea> {
                           ),
                           child: Center(
                               child: Text(
-                            '5฿',
+                            '${sum}',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              boba_cal1();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Boba ${boba} ฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),
               ),
-              //Konjac
+              //บุก
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -132,27 +279,16 @@ class _topping_teaState extends State<topping_tea> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      konjac_cal();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Konjac'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -172,25 +308,52 @@ class _topping_teaState extends State<topping_tea> {
                           ),
                           child: Center(
                               child: Text(
-                            '15฿',
+                            '${sum1}',
+                            style: TextStyle(fontSize: 20),
+                          ))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              konjac_cal2();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Konjac ${konjac}฿',
                             style: TextStyle(fontSize: 20),
                           ))),
 
                       // style: ElevatedButton.styleFrom(primary: Colors.green),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
                     ),
                   ],
                 ),
               ),
-              //Fruit Salad
+              //crystal
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -199,27 +362,16 @@ class _topping_teaState extends State<topping_tea> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      crystal_cal();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Fruit Salad '),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -239,16 +391,41 @@ class _topping_teaState extends State<topping_tea> {
                           ),
                           child: Center(
                               child: Text(
-                            '10฿',
+                            '${sum2}',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              crystal_cal3();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 152,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Crystal ${crystal}฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),
@@ -257,7 +434,7 @@ class _topping_teaState extends State<topping_tea> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -266,27 +443,16 @@ class _topping_teaState extends State<topping_tea> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      jelly_cal();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Jelly '),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -306,16 +472,41 @@ class _topping_teaState extends State<topping_tea> {
                           ),
                           child: Center(
                               child: Text(
-                            '5฿',
+                            '${sum3}',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              jelly_cal4();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Jelly ${jelly}฿',
+                            style: TextStyle(fontSize: 20),
+                          ))),
                     ),
                   ],
                 ),
@@ -324,7 +515,7 @@ class _topping_teaState extends State<topping_tea> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
                       children: [
@@ -333,27 +524,16 @@ class _topping_teaState extends State<topping_tea> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
-                                  onPressed: (() {}), icon: Icon(Icons.remove)),
+                                  onPressed: (() {
+                                    setState(() {
+                                      grains_cal();
+                                    });
+                                  }),
+                                  icon: Icon(Icons.remove)),
                             ),
                           ],
                         ),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Container(
-                        width: 152,
-                        height: 50,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Grains'),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                        ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -373,16 +553,43 @@ class _topping_teaState extends State<topping_tea> {
                           ),
                           child: Center(
                               child: Text(
-                            '20฿',
+                            '${sum4}',
+                            style: TextStyle(fontSize: 20),
+                          ))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: IconButton(
+                          onPressed: (() {
+                            setState(() {
+                              grains_cal5();
+                            });
+                          }),
+                          icon: Icon(Icons.add)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 1,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)),
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                              child: Text(
+                            'Grains ${grains}฿',
                             style: TextStyle(fontSize: 20),
                           ))),
 
                       // style: ElevatedButton.styleFrom(primary: Colors.green),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child:
-                          IconButton(onPressed: (() {}), icon: Icon(Icons.add)),
                     ),
                   ],
                 ),

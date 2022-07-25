@@ -21,6 +21,7 @@ class _product_coffeeState extends State<product_coffee> {
     new Product('AMERICANO', 65.0,
         'https://cdn.discordapp.com/attachments/803104391548502046/998523755825479720/3.png')
   ];
+  List price = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,11 +66,15 @@ class _product_coffeeState extends State<product_coffee> {
                     ),
                   ),
                   onPressed: () {
+                    setState(() {
+                      price.add(product_cof[index].price);
+                    });
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                topping_cof(p_cof: product_cof[index]))));
+                            builder: ((context) => topping_cof(
+                                  p_cof: product_cof[index],
+                                ))));
                   },
                 ),
               );

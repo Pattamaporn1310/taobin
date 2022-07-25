@@ -13,7 +13,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class topping_cof extends StatefulWidget {
   final p_cof;
-  topping_cof({Key? key, required this.p_cof}) : super(key: key);
+  //List name = [];
+  topping_cof({
+    Key? key,
+    required this.p_cof,
+  }) : super(key: key);
 
   @override
   State<topping_cof> createState() => _topping_cofState();
@@ -27,50 +31,96 @@ class _topping_cofState extends State<topping_cof> {
   int honey = 20;
   int sugar = 15;
   int milk = 10;
-  // void initState() {
-  //   count();
-  //   super.initState();
-  // }
+
+  //showVlue
+  double allSum = 0;
+  void initState() {
+    allSum = widget.p_cof.price;
+    super.initState();
+  }
 
   // void count() {
   //   for (var i = 0; i < widget.p_cof.price; i++) honey += widget.p_cof.price[i];
-  // }
+  //}
 
 //honey
-  void cal1() {
+  void H_cal() {
     setState(() {
       sum--;
+      if (sum <= 0) {
+        allSum = widget.p_cof.price;
+        sum = 0;
+      }
+      if (sum == 0) {
+      } else {
+        allSum -= honey;
+      }
     });
   }
 
-  void _cal() {
+  void H_cal1() {
+    double countPriceHoney = 0;
     setState(() {
       sum++;
+
+      countPriceHoney = (honey * sum) / sum;
+      allSum = countPriceHoney + allSum;
     });
   }
 
 //sugar
-  void cal2() {
+  void S_cal() {
     setState(() {
       sum2--;
+      if (sum2 <= 0) {
+        allSum = widget.p_cof.price;
+        sum2 = 0;
+      }
+      if (sum2 == 0) {
+      } else {
+        allSum -= sugar;
+      }
     });
   }
 
-  void __cal() {
+  void S_cal2() {
+    double countPriceSugar = 0;
+
     setState(() {
       sum2++;
+
+      countPriceSugar = (sugar * sum2) / sum2;
+      print(sum2);
+      // print(sugar);
+      print(countPriceSugar);
+      allSum = countPriceSugar + allSum;
+      print(allSum);
     });
   }
 
-  void cal3() {
+//milk
+  void M_cal() {
     setState(() {
       sum3--;
+      if (sum3 <= 0) {
+        allSum = widget.p_cof.price;
+        sum3 = 0;
+      }
+      if (sum3 == 0) {
+      } else {
+        allSum -= milk;
+      }
     });
   }
 
-  void ___cal() {
+  void M_cal3() {
+    double countPriceSugar = 0;
+
     setState(() {
       sum3++;
+
+      countPriceSugar = (sum3 * milk) / sum3;
+      allSum = countPriceSugar + allSum;
     });
   }
 
@@ -95,14 +145,14 @@ class _topping_cofState extends State<topping_cof> {
             children: [
               Image.network(widget.p_cof.imageurl),
               Text(
-                widget.p_cof.name.toString(),
+                widget.p_cof.name,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'price: ',
+                    'price: \$ ${allSum}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -121,7 +171,7 @@ class _topping_cofState extends State<topping_cof> {
                               child: IconButton(
                                   onPressed: (() {
                                     setState(() {
-                                      cal1();
+                                      H_cal();
                                     });
                                   }),
                                   icon: Icon(Icons.remove)),
@@ -157,7 +207,7 @@ class _topping_cofState extends State<topping_cof> {
                       child: IconButton(
                           onPressed: (() {
                             setState(() {
-                              _cal();
+                              H_cal1();
                             });
                           }),
                           icon: Icon(Icons.add)),
@@ -202,7 +252,7 @@ class _topping_cofState extends State<topping_cof> {
                               child: IconButton(
                                   onPressed: (() {
                                     setState(() {
-                                      cal2();
+                                      S_cal();
                                     });
                                   }),
                                   icon: Icon(Icons.remove)),
@@ -238,7 +288,7 @@ class _topping_cofState extends State<topping_cof> {
                       child: IconButton(
                           onPressed: (() {
                             setState(() {
-                              __cal();
+                              S_cal2();
                             });
                           }),
                           icon: Icon(Icons.add)),
@@ -283,7 +333,7 @@ class _topping_cofState extends State<topping_cof> {
                               child: IconButton(
                                   onPressed: (() {
                                     setState(() {
-                                      cal3();
+                                      M_cal();
                                     });
                                   }),
                                   icon: Icon(Icons.remove)),
@@ -319,7 +369,7 @@ class _topping_cofState extends State<topping_cof> {
                       child: IconButton(
                           onPressed: (() {
                             setState(() {
-                              ___cal();
+                              M_cal3();
                             });
                           }),
                           icon: Icon(Icons.add)),
@@ -366,8 +416,10 @@ class _topping_cofState extends State<topping_cof> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                option_cof(t_cof: widget.p_cof))));
+                            builder: ((context) => option_cof(
+                                  t_cof: widget.p_cof,
+                                  Optionsum: allSum,
+                                ))));
                   },
                 )
               ])));
