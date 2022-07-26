@@ -41,13 +41,12 @@ class _topping_teaState extends State<topping_tea> {
     setState(() {
       sum--;
       if (sum <= 0) {
-        allSum = widget.p_tea.price;
+        allSum -= boba;
+        //allSum = widget.p_tea.price;
         sum = 0;
       }
       if (sum == 0) {
-      } else {
-        allSum -= boba;
-      }
+      } else {}
     });
   }
 
@@ -64,13 +63,12 @@ class _topping_teaState extends State<topping_tea> {
     setState(() {
       sum1--;
       if (sum1 <= 0) {
-        allSum = widget.p_tea.price;
+        allSum -= konjac;
+        // allSum = widget.p_tea.price;
         sum1 = 0;
       }
       if (sum1 == 0) {
-      } else {
-        allSum -= konjac;
-      }
+      } else {}
     });
   }
 
@@ -88,13 +86,12 @@ class _topping_teaState extends State<topping_tea> {
       sum2--;
 
       if (sum2 <= 0) {
-        allSum = widget.p_tea.price;
+        allSum -= crystal;
+        // allSum = widget.p_tea.price;
         sum2 = 0;
       }
       if (sum2 == 0) {
-      } else {
-        allSum -= crystal;
-      }
+      } else {}
     });
   }
 
@@ -111,13 +108,12 @@ class _topping_teaState extends State<topping_tea> {
     setState(() {
       sum3--;
       if (sum3 <= 0) {
-        allSum = widget.p_tea.price;
+        allSum -= jelly;
+        //allSum = widget.p_tea.price;
         sum3 = 0;
       }
       if (sum3 == 0) {
-      } else {
-        allSum -= jelly;
-      }
+      } else {}
     });
   }
 
@@ -134,12 +130,13 @@ class _topping_teaState extends State<topping_tea> {
     setState(() {
       sum4--;
       if (sum4 <= 0) {
-        allSum = widget.p_tea.price;
+        allSum -= grains;
+
         sum4 = 0;
       }
       if (sum4 == 0) {
       } else {
-        allSum -= grains;
+        allSum = widget.p_tea.price;
       }
     });
   }

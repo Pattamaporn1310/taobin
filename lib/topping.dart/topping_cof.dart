@@ -47,13 +47,14 @@ class _topping_cofState extends State<topping_cof> {
   void H_cal() {
     setState(() {
       sum--;
-      if (sum <= 0) {
-        allSum = widget.p_cof.price;
+      if (sum == 0) {
+        allSum -= honey;
+
         sum = 0;
       }
       if (sum == 0) {
       } else {
-        allSum -= honey;
+        allSum = widget.p_cof.price;
       }
     });
   }
@@ -73,13 +74,12 @@ class _topping_cofState extends State<topping_cof> {
     setState(() {
       sum2--;
       if (sum2 <= 0) {
-        allSum = widget.p_cof.price;
+        allSum -= sugar;
+        //allSum = widget.p_cof.price;
         sum2 = 0;
       }
       if (sum2 == 0) {
-      } else {
-        allSum -= sugar;
-      }
+      } else {}
     });
   }
 
@@ -91,7 +91,7 @@ class _topping_cofState extends State<topping_cof> {
 
       countPriceSugar = (sugar * sum2) / sum2;
       print(sum2);
-      // print(sugar);
+
       print(countPriceSugar);
       allSum = countPriceSugar + allSum;
       print(allSum);
@@ -103,13 +103,12 @@ class _topping_cofState extends State<topping_cof> {
     setState(() {
       sum3--;
       if (sum3 <= 0) {
-        allSum = widget.p_cof.price;
+        allSum -= milk;
+        //allSum = widget.p_cof.price;
         sum3 = 0;
       }
       if (sum3 == 0) {
-      } else {
-        allSum -= milk;
-      }
+      } else {}
     });
   }
 

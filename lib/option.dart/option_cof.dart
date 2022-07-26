@@ -19,8 +19,10 @@ class option_cof extends StatefulWidget {
 
 class _option_cofState extends State<option_cof> {
   bool isLoading = false;
+  bool isButtonActive = true;
   int sum = 0;
   int sumtest = 0;
+  int sumtest2 = 0;
   double shot = 15;
   double small = 16;
   double big = 22;
@@ -74,6 +76,15 @@ class _option_cofState extends State<option_cof> {
     });
     //print(SmallSum);
     print(sumtest);
+  }
+
+  void big_cal() {
+    double BigSum = 0;
+    setState(() {
+      sumtest2++;
+      BigSum = (big * sumtest2) / sumtest2;
+      allsum1 = BigSum + allsum1;
+    });
   }
 
   @override
@@ -249,31 +260,45 @@ class _option_cofState extends State<option_cof> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 50,
-                    width: 105,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 1,
-                            spreadRadius: 0,
-                            offset: Offset(0, 0)),
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'BIG\ ${big} ',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ))),
-                  ),
+                      height: 50,
+                      width: 105,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 1,
+                              spreadRadius: 0,
+                              offset: Offset(0, 0)),
+                        ],
+                        color: Colors.white,
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(onSurface: Colors.blue),
+                        child: Text(
+                          'BIG ${big}',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: isButtonActive
+                            ? () {
+                                setState(() => isButtonActive = false);
+                                big_cal();
+                              }
+                            : null,
+                      )
+                      // TextButton(
+                      //     onPressed: () {},
+                      //     child: Text(
+                      //       'BIG\ ${big} ',
+                      //       style: TextStyle(
+                      //           fontSize: 16,
+                      //           fontWeight: FontWeight.bold,
+                      //           color: Colors.black),
+                      //     )),
+                      ),
                 )
               ],
             )
