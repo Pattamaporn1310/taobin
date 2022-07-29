@@ -17,15 +17,22 @@ class option_cof extends StatefulWidget {
   State<option_cof> createState() => _option_cofState();
 }
 
+//enum Size { small, big }
+
 class _option_cofState extends State<option_cof> {
   bool isLoading = false;
   bool isButtonActive = true;
+  bool _value = false;
+  //Size? _size = Size.big;
+  int val = 0;
+
   int sum = 0;
-  int sumtest = 0;
-  int sumtest2 = 0;
   double shot = 15;
   double small = 16;
   double big = 22;
+  bool SmallSum = false;
+  bool BigSum = false;
+
   //...........//
   double allsum1 = 0;
   void initState() {
@@ -35,15 +42,13 @@ class _option_cofState extends State<option_cof> {
 
   void shot_cal() {
     setState(() {
-      sum--;
-
-      if (sum <= 0) {
-        allsum1 = widget.Optionsum;
-        sum = 0;
-      }
-      if (sum == 0) {
-      } else {
+      if (sum > 0) {
+        sum--;
         allsum1 -= shot;
+      } else if (sum == 0) {
+        sum = 0;
+      } else {
+        allsum1 = widget.Optionsum;
       }
     });
   }
@@ -59,31 +64,32 @@ class _option_cofState extends State<option_cof> {
   }
 
   void small_cal() {
-    double SmallSum = 0;
     setState(() {
-      sumtest++;
-      SmallSum = (small * sumtest) / sumtest;
-      allsum1 = SmallSum + allsum1;
+      if (SmallSum == false) {
+        allsum1 = allsum1 + small;
+        SmallSum = true;
 
-      // if (sumtest <= 0) {
-      //   allsum1 = allsum1;
-      //   sumtest = 0;
-      // }
-      // if (sumtest == 0) {
-      // } else {
-      //   allsum1 -= shot;
-      // }
+        if (BigSum == true) {
+          BigSum = false;
+          allsum1 = allsum1 - big;
+        }
+      }
     });
     //print(SmallSum);
-    print(sumtest);
+    print(SmallSum);
   }
 
   void big_cal() {
-    double BigSum = 0;
     setState(() {
-      sumtest2++;
-      BigSum = (big * sumtest2) / sumtest2;
-      allsum1 = BigSum + allsum1;
+      if (BigSum == false) {
+        allsum1 = allsum1 + big;
+        BigSum = true;
+
+        if (SmallSum == true) {
+          SmallSum = false;
+          allsum1 = allsum1 - small;
+        }
+      }
     });
   }
 
@@ -223,85 +229,57 @@ class _option_cofState extends State<option_cof> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+
+            // ListView(
+            //   padding: EdgeInsets.symmetric(vertical: 16),
+            //   children: [
+            //     RadioListTile<int>(
+            //       value: 1,
+            //       groupValue: val,
+            //       title: Text('Small ${small} ฿'),
+            //       onChanged: (value) => setState(() => val = 1),
+            //     ),
+            //   ],
+            // ),
+            Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 50,
-                    width: 105,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 1,
-                            spreadRadius: 0,
-                            offset: Offset(0, 0)),
-                      ],
-                      color: Colors.white,
-                    ),
-                    child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            small_cal();
-                          });
-                        },
-                        child: Text(
-                          'SMALL ${small} ',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        )),
+                ListTile(
+                  title: Text('Small ${small} ฿'),
+                  leading: Radio(
+                    //activeColor: Color(0xFF6200EE),
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    value: 1,
+                    groupValue: val,
+                    onChanged: (value) {
+                      setState(() {
+                        val = 1;
+                        small_cal();
+                      });
+                    },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      height: 50,
-                      width: 105,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 1,
-                              spreadRadius: 0,
-                              offset: Offset(0, 0)),
-                        ],
-                        color: Colors.white,
-                      ),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(onSurface: Colors.blue),
-                        child: Text(
-                          'BIG ${big}',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        onPressed: isButtonActive
-                            ? () {
-                                setState(() => isButtonActive = false);
-                                big_cal();
-                              }
-                            : null,
-                      )
-                      // TextButton(
-                      //     onPressed: () {},
-                      //     child: Text(
-                      //       'BIG\ ${big} ',
-                      //       style: TextStyle(
-                      //           fontSize: 16,
-                      //           fontWeight: FontWeight.bold,
-                      //           color: Colors.black),
-                      //     )),
-                      ),
-                )
+                ListTile(
+                  title: Text('Big ${big} ฿'),
+                  leading: Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    value: 2,
+                    groupValue: val,
+                    onChanged: (value) {
+                      setState(() {
+                        val = 2;
+                        big_cal();
+                      });
+                    },
+                  ),
+                ),
               ],
-            )
+            ),
           ])),
           bottomSheet: Padding(
               padding: const EdgeInsets.all(10),
@@ -311,16 +289,25 @@ class _option_cofState extends State<option_cof> {
                   child: Text('Next'),
                   color: Colors.orange,
                   onPressed: () async {
-                    setState(() => isLoading = true);
-                    await Future.delayed(const Duration(seconds: 2));
-                    setState(() => isLoading = false);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => receipt_cof(
-                                  op_cof: widget.t_cof,
-                                  receiptsum: allsum1,
-                                ))));
+                    if (SmallSum == false && BigSum == false) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                            title: Text('Result'),
+                            content: Text('Select U Cup')),
+                      );
+                    } else {
+                      setState(() => isLoading = true);
+                      await Future.delayed(const Duration(seconds: 1));
+                      setState(() => isLoading = false);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => receipt_cof(
+                                    op_cof: widget.t_cof,
+                                    receiptsum: allsum1,
+                                  ))));
+                    }
                   },
                 ),
               ])));

@@ -9,19 +9,89 @@ import 'package:taobin/receipt.dart/receipt_tea.dart';
 
 class option_tea extends StatefulWidget {
   final Product t_tea;
-  const option_tea({Key? key, required this.t_tea});
+  final double Optiontea;
+  const option_tea({Key? key, required this.t_tea, required this.Optiontea});
 
   @override
   State<option_tea> createState() => _option_teaState();
 }
 
-enum OP { NoSugar, LessSweet, Justright, Sweet, VerySweet }
+//enum OP { NoSugar, LessSweet, Justright, Sweet, VerySweet }
 
 class _option_teaState extends State<option_tea> {
+  //TextEditingController controller = TextEditingController();
   bool isLoading = false;
-  OP? _op = OP.NoSugar;
+  bool SmallSum = false;
+  bool BigSum = false;
+
+  //....//
+  bool nosugar = false;
+  bool L_sweet = false;
+  bool JR = false;
+  bool sweet = false;
+  bool v_sweet = false;
+//..
+  int val = 0;
+  int selected = 0;
+  //...//
   int small = 16;
   int big = 22;
+
+  double NoSugar = 5;
+  double LessSweet = 10;
+  double Justright = 0;
+  double Sweet = 10;
+  double VerySweet = 15;
+//............//
+  double allsum2 = 0;
+  void initState() {
+    allsum2 = widget.Optiontea;
+    super.initState();
+  }
+
+  void no_sugar() {
+    setState(() {
+      if (nosugar == false) {
+        allsum2 = allsum2 + NoSugar;
+        nosugar = true;
+        if (nosugar == true) {
+          nosugar = false;
+          allsum2 = allsum2 - NoSugar;
+        }
+      }
+    });
+  }
+
+  void small_cal() {
+    setState(() {
+      if (SmallSum == false) {
+        allsum2 = allsum2 + small;
+        SmallSum = true;
+
+        if (BigSum == true) {
+          BigSum = false;
+          allsum2 = allsum2 - big;
+        }
+      }
+    });
+    //print(SmallSum);
+    print(SmallSum);
+  }
+
+  void big_cal() {
+    setState(() {
+      if (BigSum == false) {
+        allsum2 = allsum2 + big;
+        BigSum = true;
+
+        if (SmallSum == true) {
+          SmallSum = false;
+          allsum2 = allsum2 - small;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) => isLoading
       ? const LoadingPage()
@@ -51,7 +121,7 @@ class _option_teaState extends State<option_tea> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'price: ${widget.t_tea.price}',
+                      'price: ${allsum2}',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     )
@@ -59,63 +129,86 @@ class _option_teaState extends State<option_tea> {
                 ),
                 // SizedBox(
                 //   height: 10,
-                // ),
+                // )
                 ListTile(
-                  title: Text('No Sugar 5฿'),
-                  leading: Radio<OP>(
-                    value: OP.NoSugar,
-                    groupValue: _op,
-                    onChanged: (OP? value) {
+                  title: Text('No Sugar ${NoSugar}฿'),
+                  focusColor:
+                      MaterialStateColor.resolveWith((states) => Colors.green),
+                  leading: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    focusColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    value: 1,
+                    groupValue: val,
+                    onChanged: (value) {
                       setState(() {
-                        _op = value;
+                        val = 1;
+                        no_sugar();
                       });
                     },
                   ),
                 ),
                 ListTile(
-                  title: Text('Less Sweet 5฿'),
-                  leading: Radio<OP>(
-                    value: OP.LessSweet,
-                    groupValue: _op,
-                    onChanged: (OP? value) {
+                  title: Text('Less Sweet ${LessSweet}฿'),
+                  leading: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    focusColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    value: 2,
+                    groupValue: val,
+                    onChanged: (value) {
                       setState(() {
-                        _op = value;
+                        val = 2;
                       });
                     },
                   ),
                 ),
                 ListTile(
-                  title: Text('Just Right 0฿'),
-                  leading: Radio<OP>(
-                    value: OP.Justright,
-                    groupValue: _op,
-                    onChanged: (OP? value) {
+                  title: Text('Just Right ${Justright}฿'),
+                  leading: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    focusColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    value: 3,
+                    groupValue: val,
+                    onChanged: (value) {
                       setState(() {
-                        _op = value;
+                        val = 3;
                       });
                     },
                   ),
                 ),
                 ListTile(
-                  title: Text('Sweet 10฿'),
-                  leading: Radio<OP>(
-                    value: OP.Sweet,
-                    groupValue: _op,
-                    onChanged: (OP? value) {
+                  title: Text('Sweet ${Sweet}฿'),
+                  leading: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    focusColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    value: 4,
+                    groupValue: val,
+                    onChanged: (value) {
                       setState(() {
-                        _op = value;
+                        val = 4;
                       });
                     },
                   ),
                 ),
                 ListTile(
-                  title: Text('Very Sweet 15฿'),
-                  leading: Radio<OP>(
-                    value: OP.VerySweet,
-                    groupValue: _op,
-                    onChanged: (OP? value) {
+                  title: Text('Very Sweet ${VerySweet}฿'),
+                  leading: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    focusColor:
+                        MaterialStateColor.resolveWith((states) => Colors.red),
+                    value: 5,
+                    groupValue: val,
+                    onChanged: (value) {
                       setState(() {
-                        _op = value;
+                        val = 5;
                       });
                     },
                   ),
@@ -133,71 +226,42 @@ class _option_teaState extends State<option_tea> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 50,
-                        width: 105,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 1,
-                                spreadRadius: 0,
-                                offset: Offset(0, 0)),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                //small_cal();
-                              });
-                            },
-                            child: Text(
-                              'SMALL\ ${small}฿ ',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            )),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 50,
-                        width: 105,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black,
-                                blurRadius: 1,
-                                spreadRadius: 0,
-                                offset: Offset(0, 0)),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: TextButton(
-                            onPressed: () {},
-                            child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'BIG\ ${big} ฿',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ))),
-                      ),
-                    )
-                  ],
-                )
+                ListTile(
+                  title: Text('Small ${small} ฿'),
+                  leading: Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    value: 1,
+                    groupValue: selected,
+                    onChanged: (value) {
+                      setState(() {
+                        selected = 1;
+                        small_cal();
+                      });
+                    },
+                    activeColor: Colors.blue,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Big ${big} ฿'),
+                  leading: Radio(
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    focusColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.green),
+                    value: 2,
+                    groupValue: selected,
+                    onChanged: (value) {
+                      setState(() {
+                        selected = 2;
+                        big_cal();
+                      });
+                    },
+                    activeColor: Colors.blue,
+                  ),
+                ),
               ]),
             ),
           ),
@@ -206,20 +270,29 @@ class _option_teaState extends State<option_tea> {
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 FlatButton(
-                  child: Text('Next'),
-                  color: Colors.orange,
-                  onPressed: () async {
-                    setState(() => isLoading = true);
-                    await Future.delayed(const Duration(seconds: 2));
-                    setState(() => isLoading = false);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => receipt_tea(
-                                  op_tea: widget.t_tea,
-                                  //receiptsum: allsum1,
-                                ))));
-                  },
-                ),
+                    child: Text('Next'),
+                    color: Colors.orange,
+                    onPressed: () async {
+                      if (SmallSum == false && BigSum == false) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                              title: Text('Result'),
+                              content: Text('Select U Cup')),
+                        );
+                      } else {
+                        setState(() => isLoading = true);
+                        await Future.delayed(const Duration(seconds: 2));
+                        setState(() => isLoading = false);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => receipt_tea(
+                                      op_tea: widget.t_tea, receipttea: allsum2,
+                                      //receiptsum: allsum1,
+                                    ))));
+                      }
+                      ;
+                    }),
               ])));
 }

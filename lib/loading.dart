@@ -12,7 +12,7 @@ class LoadingPage extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 114, 180, 234),
       body: Center(
         child: SpinKitCircle(
-          duration: Duration(seconds: 2),
+          duration: Duration(seconds: 1),
           size: 140,
           itemBuilder: (context, index) {
             final colors = [Colors.white, Colors.pink];

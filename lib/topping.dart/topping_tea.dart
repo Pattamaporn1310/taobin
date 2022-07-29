@@ -19,17 +19,17 @@ class topping_tea extends StatefulWidget {
 class _topping_teaState extends State<topping_tea> {
   bool isLoading = false;
   //add
-  double sum = 0;
-  double sum1 = 0;
-  double sum2 = 0;
-  double sum3 = 0;
-  double sum4 = 0;
+  int sum = 0;
+  int sum1 = 0;
+  int sum2 = 0;
+  int sum3 = 0;
+  int sum4 = 0;
   //topping
-  double boba = 5;
-  double konjac = 15;
-  double crystal = 10;
-  double jelly = 5;
-  double grains = 20;
+  int boba = 5;
+  int konjac = 15;
+  int crystal = 10;
+  int jelly = 5;
+  int grains = 20;
   double allSum = 0;
 
   void initState() {
@@ -39,14 +39,14 @@ class _topping_teaState extends State<topping_tea> {
 
   void boba_cal() {
     setState(() {
-      sum--;
-      if (sum <= 0) {
+      if (sum > 0) {
+        sum--;
         allSum -= boba;
-        //allSum = widget.p_tea.price;
+      } else if (sum == 0) {
         sum = 0;
+      } else {
+        allSum = widget.p_tea.price;
       }
-      if (sum == 0) {
-      } else {}
     });
   }
 
@@ -61,14 +61,14 @@ class _topping_teaState extends State<topping_tea> {
 
   void konjac_cal() {
     setState(() {
-      sum1--;
-      if (sum1 <= 0) {
+      if (sum1 > 0) {
+        sum1--;
         allSum -= konjac;
-        // allSum = widget.p_tea.price;
+      } else if (sum1 == 0) {
         sum1 = 0;
+      } else {
+        allSum = widget.p_tea.price;
       }
-      if (sum1 == 0) {
-      } else {}
     });
   }
 
@@ -83,15 +83,14 @@ class _topping_teaState extends State<topping_tea> {
 
   void crystal_cal() {
     setState(() {
-      sum2--;
-
-      if (sum2 <= 0) {
+      if (sum2 > 0) {
+        sum2--;
         allSum -= crystal;
-        // allSum = widget.p_tea.price;
+      } else if (sum2 == 0) {
         sum2 = 0;
+      } else {
+        allSum = widget.p_tea.price;
       }
-      if (sum2 == 0) {
-      } else {}
     });
   }
 
@@ -106,14 +105,14 @@ class _topping_teaState extends State<topping_tea> {
 
   void jelly_cal() {
     setState(() {
-      sum3--;
-      if (sum3 <= 0) {
+      if (sum3 > 0) {
+        sum3--;
         allSum -= jelly;
-        //allSum = widget.p_tea.price;
-        sum3 = 0;
+      } else if (sum3 == 0) {
+        sum2 = 0;
+      } else {
+        allSum = widget.p_tea.price;
       }
-      if (sum3 == 0) {
-      } else {}
     });
   }
 
@@ -128,13 +127,11 @@ class _topping_teaState extends State<topping_tea> {
 
   void grains_cal() {
     setState(() {
-      sum4--;
-      if (sum4 <= 0) {
+      if (sum4 > 0) {
+        sum4--;
         allSum -= grains;
-
+      } else if (sum4 == 0) {
         sum4 = 0;
-      }
-      if (sum4 == 0) {
       } else {
         allSum = widget.p_tea.price;
       }
@@ -155,7 +152,7 @@ class _topping_teaState extends State<topping_tea> {
       ? const LoadingPage()
       : Scaffold(
           appBar: AppBar(
-            title: Text(widget.p_tea.name),
+            title: Text('TOPPING'),
             actions: [
               IconButton(
                   onPressed: () {
@@ -585,8 +582,6 @@ class _topping_teaState extends State<topping_tea> {
                             'Grains ${grains}฿',
                             style: TextStyle(fontSize: 20),
                           ))),
-
-                      // style: ElevatedButton.styleFrom(primary: Colors.green),
                     ),
                   ],
                 ),
@@ -602,13 +597,15 @@ class _topping_teaState extends State<topping_tea> {
                   color: Colors.green,
                   onPressed: () async {
                     setState(() => isLoading = true);
-                    await Future.delayed(const Duration(seconds: 2));
+                    await Future.delayed(const Duration(seconds: 1));
                     setState(() => isLoading = false);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) =>
-                                option_tea(t_tea: widget.p_tea))));
+                            builder: ((context) => option_tea(
+                                  t_tea: widget.p_tea,
+                                  Optiontea: allSum,
+                                ))));
                   },
                 )
               ])));

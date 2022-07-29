@@ -15,17 +15,49 @@ class receipt_cof extends StatefulWidget {
 }
 
 class _receipt_cofState extends State<receipt_cof> {
+  TextEditingController controller = TextEditingController(text: '0');
   double allsum2 = 0;
+
+  double Finally = 0;
+
   void initState() {
     allsum2 = widget.receiptsum;
     super.initState();
+  }
+
+  // void total(){
+  //   double cha
+  //   setState(() {
+  //     allsum2 -=
+  //   });
+  // }
+
+  void submit() {
+    String PrintInput = controller.text;
+    Finally = double.parse(PrintInput) - allsum2;
+
+    if (Finally < 0) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+            title: Text('Yed Hee Get money'),
+            content: Text(' ขาดอีก ${Finally.abs()} บาทครับ')),
+      );
+    } else if (Finally == 0) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text('Yed Hee Get money'),
+              content: Text('โอเคขอบคุณที่มาซื้อ')));
+    }
+    print(Finally);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('OPTION'),
+          title: Text('RECEIPT'),
           actions: [
             IconButton(
                 onPressed: () {
@@ -75,10 +107,9 @@ class _receipt_cofState extends State<receipt_cof> {
                       Container(
                         width: 200,
                         child: TextField(
-                          //controller: widhtcontroller,
+                          controller: controller,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: 'Money',
                           ),
                           keyboardType: TextInputType.number,
                         ),
@@ -87,7 +118,6 @@ class _receipt_cofState extends State<receipt_cof> {
                   )
                 ],
               ),
-              //.........//
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: Row(
@@ -124,7 +154,7 @@ class _receipt_cofState extends State<receipt_cof> {
                             ),
                             child: Center(
                                 child: Text(
-                              ' ',
+                              '${Finally}',
                               style: TextStyle(fontSize: 20),
                             ))),
                       ),
@@ -141,7 +171,7 @@ class _receipt_cofState extends State<receipt_cof> {
               FlatButton(
                 child: Text('Submit'),
                 color: Colors.lightBlue,
-                onPressed: () async {
+                onPressed: () {
                   // setState(() => isLoading = true);
                   // await Future.delayed(const Duration(seconds: 2));
                   // setState(() => isLoading = false);
@@ -152,6 +182,9 @@ class _receipt_cofState extends State<receipt_cof> {
                   //               op_cof: widget.t_cof,
                   //               receiptsum: allsum1,
                   //             ))));
+                  setState(() {
+                    submit();
+                  });
                 },
               ),
             ])));

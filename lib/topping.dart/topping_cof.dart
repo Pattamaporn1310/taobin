@@ -46,13 +46,11 @@ class _topping_cofState extends State<topping_cof> {
 //honey
   void H_cal() {
     setState(() {
-      sum--;
-      if (sum == 0) {
+      if (sum > 0) {
+        sum--;
         allSum -= honey;
-
+      } else if (sum == 0) {
         sum = 0;
-      }
-      if (sum == 0) {
       } else {
         allSum = widget.p_cof.price;
       }
@@ -72,14 +70,14 @@ class _topping_cofState extends State<topping_cof> {
 //sugar
   void S_cal() {
     setState(() {
-      sum2--;
-      if (sum2 <= 0) {
+      if (sum2 > 0) {
+        sum2--;
         allSum -= sugar;
-        //allSum = widget.p_cof.price;
+      } else if (sum2 == 0) {
         sum2 = 0;
+      } else {
+        allSum = widget.p_cof.price;
       }
-      if (sum2 == 0) {
-      } else {}
     });
   }
 
@@ -101,14 +99,14 @@ class _topping_cofState extends State<topping_cof> {
 //milk
   void M_cal() {
     setState(() {
-      sum3--;
-      if (sum3 <= 0) {
+      if (sum3 > 0) {
+        sum3--;
         allSum -= milk;
-        //allSum = widget.p_cof.price;
+      } else if (sum3 == 0) {
         sum3 = 0;
+      } else {
+        allSum = widget.p_cof.price;
       }
-      if (sum3 == 0) {
-      } else {}
     });
   }
 
@@ -409,7 +407,7 @@ class _topping_cofState extends State<topping_cof> {
                   color: Colors.green,
                   onPressed: () async {
                     setState(() => isLoading = true);
-                    await Future.delayed(const Duration(seconds: 2));
+                    await Future.delayed(const Duration(seconds: 1));
                     setState(() => isLoading = false);
 
                     Navigator.push(

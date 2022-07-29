@@ -6,28 +6,52 @@ import 'package:taobin/product.dart';
 
 class receipt_tea extends StatefulWidget {
   final Product op_tea;
+  final double receipttea;
   //final double receiptsum;
-  const receipt_tea({
-    Key? key,
-    required this.op_tea,
-  }) : super(key: key);
+  const receipt_tea({Key? key, required this.op_tea, required this.receipttea})
+      : super(key: key);
 
   @override
   State<receipt_tea> createState() => _receipt_teaState();
 }
 
 class _receipt_teaState extends State<receipt_tea> {
-  // double allsum2 = 0;
-  // void initState() {
-  //   allsum2 = widget.receiptsum;
-  //   super.initState();
-  // }
+  TextEditingController controller = TextEditingController(text: '0');
+  double total = 0;
+
+  double Finally = 0;
+
+  void initState() {
+    total = widget.receipttea;
+    super.initState();
+  }
+
+  void submit() {
+    String PrintInput = controller.text;
+    Finally = double.parse(PrintInput) - total;
+
+    if (Finally < 0) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+            title: Text('Yed Hee Get money'),
+            content: Text(' ขาดอีก ${Finally.abs()} บาทครับ')),
+      );
+    } else if (Finally == 0) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: Text('Yed Hee Get money'),
+              content: Text('โอเคขอบคุณที่มาซื้อ')));
+    }
+    print(Finally);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('OPTION'),
+          title: Text('RECEIPT'),
           actions: [
             IconButton(
                 onPressed: () {
@@ -51,7 +75,7 @@ class _receipt_teaState extends State<receipt_tea> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Total: \$  ',
+                    'Total: ${total}  ',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -77,7 +101,7 @@ class _receipt_teaState extends State<receipt_tea> {
                       Container(
                         width: 200,
                         child: TextField(
-                          //controller: widhtcontroller,
+                          controller: controller,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Money',
@@ -126,7 +150,7 @@ class _receipt_teaState extends State<receipt_tea> {
                             ),
                             child: Center(
                                 child: Text(
-                              ' ',
+                              ' ${Finally}',
                               style: TextStyle(fontSize: 20),
                             ))),
                       ),
@@ -154,6 +178,9 @@ class _receipt_teaState extends State<receipt_tea> {
                   //               op_cof: widget.t_cof,
                   //               receiptsum: allsum1,
                   //             ))));
+                  setState(() {
+                    submit();
+                  });
                 },
               ),
             ])));
