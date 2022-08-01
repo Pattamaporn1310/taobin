@@ -140,7 +140,7 @@ class _topping_cofState extends State<topping_cof> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(widget.p_cof.imageurl),
+              Image.asset(widget.p_cof.imageurl),
               Text(
                 widget.p_cof.name,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -149,7 +149,7 @@ class _topping_cofState extends State<topping_cof> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'price: \$ ${allSum}',
+                    'price:  ${allSum}฿',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -213,7 +213,7 @@ class _topping_cofState extends State<topping_cof> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -294,7 +294,7 @@ class _topping_cofState extends State<topping_cof> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -375,7 +375,7 @@ class _topping_cofState extends State<topping_cof> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [

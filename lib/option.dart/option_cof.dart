@@ -111,7 +111,7 @@ class _option_cofState extends State<option_cof> {
           body: Center(
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Image.network(widget.t_cof.imageurl),
+            Image.asset(widget.t_cof.imageurl),
             Text(
               widget.t_cof.name,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -120,7 +120,7 @@ class _option_cofState extends State<option_cof> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'price: \$ ${allsum1} ',
+                  'price:  ${allsum1}฿ ',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],

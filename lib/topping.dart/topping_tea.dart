@@ -165,7 +165,7 @@ class _topping_teaState extends State<topping_tea> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(widget.p_tea.imageurl),
+              Image.asset(widget.p_tea.imageurl),
               Text(
                 widget.p_tea.name,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -174,7 +174,7 @@ class _topping_teaState extends State<topping_tea> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'price: \$ ${allSum}',
+                    'price:  ${allSum}฿',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -239,7 +239,7 @@ class _topping_teaState extends State<topping_tea> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -320,7 +320,7 @@ class _topping_teaState extends State<topping_tea> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -403,7 +403,7 @@ class _topping_teaState extends State<topping_tea> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 152,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -484,7 +484,7 @@ class _topping_teaState extends State<topping_tea> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
@@ -565,7 +565,7 @@ class _topping_teaState extends State<topping_tea> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           height: 50,
-                          width: 150,
+                          width: 125,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [

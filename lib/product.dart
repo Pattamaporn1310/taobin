@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
 class Product {
   final String name;
   final double price;
   final String imageurl;
-  Product(this.name, this.price, this.imageurl);
+  final String selec;
+  Product(this.name, this.price, this.imageurl, this.selec);
 }
 
 class ListItem {

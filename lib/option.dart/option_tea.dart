@@ -49,15 +49,50 @@ class _option_teaState extends State<option_tea> {
     super.initState();
   }
 
-  void no_sugar() {
+  void calcuall() {
     setState(() {
-      if (nosugar == false) {
+      if (val == 1) {
+        allsum2 = widget.Optiontea;
         allsum2 = allsum2 + NoSugar;
-        nosugar = true;
-        if (nosugar == true) {
-          nosugar = false;
-          allsum2 = allsum2 - NoSugar;
+        if (SmallSum == true) {
+          allsum2 += small;
+        } else if (BigSum == true) {
+          allsum2 += big;
         }
+      } else if (val == 2) {
+        allsum2 = widget.Optiontea;
+        allsum2 = allsum2 + LessSweet;
+        if (SmallSum == true) {
+          allsum2 += small;
+        } else if (BigSum == true) {
+          allsum2 += big;
+        }
+      } else if (val == 3) {
+        allsum2 = widget.Optiontea;
+        allsum2 = allsum2 + Justright;
+        if (SmallSum == true) {
+          allsum2 += small;
+        } else if (BigSum == true) {
+          allsum2 += big;
+        }
+      } else if (val == 4) {
+        allsum2 = widget.Optiontea;
+        allsum2 = allsum2 + Sweet;
+        if (SmallSum == true) {
+          allsum2 += small;
+        } else if (BigSum == true) {
+          allsum2 += big;
+        }
+      } else if (val == 5) {
+        allsum2 = widget.Optiontea;
+        allsum2 = allsum2 + VerySweet;
+        if (SmallSum == true) {
+          allsum2 += small;
+        } else if (BigSum == true) {
+          allsum2 += big;
+        }
+      } else {
+        allsum2 = widget.Optiontea;
       }
     });
   }
@@ -67,7 +102,6 @@ class _option_teaState extends State<option_tea> {
       if (SmallSum == false) {
         allsum2 = allsum2 + small;
         SmallSum = true;
-
         if (BigSum == true) {
           BigSum = false;
           allsum2 = allsum2 - big;
@@ -112,7 +146,7 @@ class _option_teaState extends State<option_tea> {
               padding: const EdgeInsets.all(8.0),
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                Image.network(widget.t_tea.imageurl),
+                Image.asset(widget.t_tea.imageurl),
                 Text(
                   widget.t_tea.name,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -121,7 +155,7 @@ class _option_teaState extends State<option_tea> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'price: ${allsum2}',
+                      'price: ${allsum2}฿',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     )
@@ -144,7 +178,7 @@ class _option_teaState extends State<option_tea> {
                     onChanged: (value) {
                       setState(() {
                         val = 1;
-                        no_sugar();
+                        calcuall();
                       });
                     },
                   ),
@@ -161,6 +195,7 @@ class _option_teaState extends State<option_tea> {
                     onChanged: (value) {
                       setState(() {
                         val = 2;
+                        calcuall();
                       });
                     },
                   ),
@@ -177,6 +212,7 @@ class _option_teaState extends State<option_tea> {
                     onChanged: (value) {
                       setState(() {
                         val = 3;
+                        calcuall();
                       });
                     },
                   ),
@@ -193,6 +229,7 @@ class _option_teaState extends State<option_tea> {
                     onChanged: (value) {
                       setState(() {
                         val = 4;
+                        calcuall();
                       });
                     },
                   ),
@@ -209,6 +246,7 @@ class _option_teaState extends State<option_tea> {
                     onChanged: (value) {
                       setState(() {
                         val = 5;
+                        calcuall();
                       });
                     },
                   ),
