@@ -39,10 +39,12 @@ class _receipt_teaState extends State<receipt_tea> {
             content: Text(' ขาดอีก ${Finally.abs()} บาทค่ะ')),
       );
     } else if (Finally == 0) {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-              title: Text('Complete Payment'), content: Text('Thank You :)')));
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => index())));
+      // showDialog(
+      //     context: context,
+      //     builder: (context) => AlertDialog(
+      //         title: Text('Complete Payment'), content: Text('Thank You :)')));
     }
     print(Finally);
   }
@@ -156,7 +158,7 @@ class _receipt_teaState extends State<receipt_tea> {
                               ),
                               child: Center(
                                   child: Text(
-                                ' ${Finally.floor()}',
+                                ' ${Finally.floor()}฿',
                                 style: TextStyle(fontSize: 20),
                               ))),
                         ),

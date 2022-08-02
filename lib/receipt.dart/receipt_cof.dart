@@ -38,12 +38,14 @@ class _receipt_cofState extends State<receipt_cof> {
             content: Text(' ขาดอีก ${Finally.abs()} บาทค่ะ')),
       );
     } else if (Finally == 0) {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-              title: Text('Complete Payment'), content: Text('Thank You :)')));
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => index())));
+
+      // showDialog(
+      //     context: context,
+      //     builder: (context) => AlertDialog(
+      //         title: Text('Complete Payment'), content: Text('Thank You :)')));
     }
-    print(Finally);
   }
 
   @override
@@ -153,7 +155,7 @@ class _receipt_cofState extends State<receipt_cof> {
                               ),
                               child: Center(
                                   child: Text(
-                                '${Finally.floor()}',
+                                '${Finally.floor()} ฿',
                                 style: TextStyle(fontSize: 20),
                               ))),
                         ),

@@ -36,9 +36,8 @@ class _indexState extends State<index> {
                 child: Image.asset(
                   product_tea[index].imageurl,
                 ),
-                footer: GridTileBar(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                footer: Container(
+                  child: Column(
                     children: [
                       Text(
                         product_tea[index].name,
@@ -47,19 +46,15 @@ class _indexState extends State<index> {
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       ),
-                    ],
-                  ),
-                  subtitle: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
                       Text('price ${product_tea[index].price} ฿',
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  //trailing: Text(product_tea[index].selec),
                 ),
+
+                //trailing: Text(product_tea[index].selec),
               ),
               onPressed: () {
                 if (product_tea[index].selec == 'tea') {
